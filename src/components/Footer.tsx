@@ -44,12 +44,23 @@ export default function Footer() {
     mouseY.set(e.clientY - rect.top);
   };
 
+  const handleTouchMove = (e: React.TouchEvent<HTMLElement>) => {
+    if (!containerRef.current) return;
+    const touch = e.touches[0];
+    const rect = containerRef.current.getBoundingClientRect();
+    mouseX.set(touch.clientX - rect.left);
+    mouseY.set(touch.clientY - rect.top);
+  };
+
   return (
     <footer 
       ref={containerRef}
       onMouseMove={handleMouseMove}
+      onTouchMove={handleTouchMove}
       onMouseEnter={() => setIsHovered(true)}
+      onTouchStart={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onTouchEnd={() => setIsHovered(false)}
       className="relative min-h-[70vh] bg-[#020202] text-white flex flex-col justify-between overflow-hidden border-t border-white/10 z-20"
     >
       {/* Massive Fluid Color Background that matches the top-of-website vibe */}

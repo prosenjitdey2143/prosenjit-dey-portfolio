@@ -88,6 +88,15 @@ export default function Projects() {
     mouseY.set(0);
   };
 
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    const touch = e.touches[0];
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (touch.clientX - rect.left) / rect.width - 0.5;
+    const y = (touch.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
   return (
     <section 
       id="recent-work" 
@@ -118,6 +127,8 @@ export default function Projects() {
            <motion.div 
              onMouseMove={handleMouseMove}
              onMouseLeave={handleMouseLeave}
+             onTouchMove={handleTouchMove}
+             onTouchEnd={handleMouseLeave}
              style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
              className="w-full h-[70vh] rounded-[3rem] overflow-hidden relative shadow-[0_20px_100px_rgba(0,0,0,0.8)] border border-white/10 bg-[#020202] cursor-crosshair"
            >

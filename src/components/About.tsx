@@ -1,6 +1,6 @@
 'use client';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
-import { useRef, MouseEvent } from 'react';
+import { useRef, MouseEvent, TouchEvent } from 'react';
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -26,6 +26,11 @@ export default function About() {
     mouseY.set(e.clientY);
   };
 
+  const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+    mouseX.set(e.touches[0].clientX);
+    mouseY.set(e.touches[0].clientY);
+  };
+
   const glowLight = useMotionTemplate`radial-gradient(600px circle at ${smoothX}px ${smoothY}px, rgba(255,255,255,0.05), transparent 80%)`;
 
   return (
@@ -39,6 +44,7 @@ export default function About() {
       <div 
         className="sticky top-0 h-screen flex items-center overflow-hidden cursor-crosshair"
         onMouseMove={handleMouseMove}
+        onTouchMove={handleTouchMove}
       >
         
         {/* Interactive Mouse Glow */}
