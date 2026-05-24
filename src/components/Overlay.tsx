@@ -1,5 +1,5 @@
 'use client';
-import { motion, MotionValue, useTransform } from 'framer-motion';
+import { m, MotionValue, useTransform } from 'framer-motion';
 
 export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
   
@@ -39,20 +39,20 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
       <div className="absolute inset-0 flex flex-col items-start justify-center text-left max-w-5xl mx-auto md:mx-0 left-8 md:left-24 right-8 md:right-auto">
         <h2 className="text-5xl md:text-[6rem] font-bold tracking-tighter text-white leading-[1.05] drop-shadow-2xl">
           <div className="overflow-hidden py-2 -my-2">
-            <motion.div 
+            <m.div 
               style={{ y: s2_l1_y, opacity: s2_l1_opacity, rotate: s2_l1_rotate, filter: s2_l1_blur }} 
               className="origin-top-left"
             >
               I build digital
-            </motion.div>
+            </m.div>
           </div>
           <div className="overflow-hidden py-2 -my-2">
-            <motion.div 
+            <m.div 
               style={{ y: s2_l2_y, opacity: s2_l2_opacity, rotate: s2_l2_rotate, filter: s2_l2_blur }} 
               className="origin-top-left text-gray-400"
             >
               experiences.
-            </motion.div>
+            </m.div>
           </div>
         </h2>
       </div>
@@ -61,20 +61,20 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
       <div className="absolute inset-0 flex flex-col items-end justify-center text-right max-w-5xl mx-auto md:mx-0 right-8 md:right-24 left-8 md:left-auto">
         <h2 className="text-5xl md:text-[6rem] font-bold tracking-tighter text-white leading-[1.05] drop-shadow-2xl">
           <div className="overflow-hidden py-2 -my-2">
-            <motion.div 
+            <m.div 
               style={{ y: s3_l1_y, opacity: s3_l1_opacity, rotate: s3_l1_rotate, filter: s3_l1_blur }} 
               className="origin-top-right"
             >
               Bridging design
-            </motion.div>
+            </m.div>
           </div>
           <div className="overflow-hidden py-2 -my-2">
-            <motion.div 
+            <m.div 
               style={{ y: s3_l2_y, opacity: s3_l2_opacity, rotate: s3_l2_rotate, filter: s3_l2_blur }} 
               className="origin-top-right text-gray-400"
             >
               & engineering.
-            </motion.div>
+            </m.div>
           </div>
         </h2>
       </div>

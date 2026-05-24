@@ -1,5 +1,5 @@
 'use client';
-import { motion, useScroll, useTransform, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
+import { m, useScroll, useTransform, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
 import { useRef, MouseEvent, TouchEvent } from 'react';
 
 export default function About() {
@@ -48,20 +48,20 @@ export default function About() {
       >
         
         {/* Interactive Mouse Glow */}
-        <motion.div 
+        <m.div 
           className="absolute inset-0 z-0 pointer-events-none mix-blend-screen"
           style={{ background: glowLight }}
         />
 
         {/* The Horizontal Track */}
-        <motion.div style={{ x }} className="flex w-[300vw] h-full relative z-10">
+        <m.div style={{ x }} className="flex w-[300vw] h-full relative z-10">
           
           {/* Panel 1: The Foundation */}
           <div className="w-[100vw] h-full flex flex-col justify-center px-8 md:px-32 lg:px-48 relative border-r border-white/5">
              <div className="overflow-hidden">
-               <motion.p className="text-gray-600 tracking-[0.4em] uppercase mb-8 font-bold text-sm md:text-base">
+               <m.p className="text-gray-600 tracking-[0.4em] uppercase mb-8 font-bold text-sm md:text-base">
                  01 — The Foundation
-               </motion.p>
+               </m.p>
              </div>
              <h2 className="text-[3.5rem] sm:text-6xl md:text-[5rem] lg:text-[9rem] font-bold text-white tracking-tighter leading-[1.05]">
                I am a B.Tech <br />
@@ -73,9 +73,9 @@ export default function About() {
           {/* Panel 2: The Logic */}
           <div className="w-[100vw] h-full flex flex-col justify-center px-8 md:px-32 lg:px-48 relative border-r border-white/5">
              <div className="overflow-hidden">
-               <motion.p className="text-indigo-500 tracking-[0.4em] uppercase mb-8 font-bold text-sm md:text-base drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]">
+               <m.p className="text-indigo-500 tracking-[0.4em] uppercase mb-8 font-bold text-sm md:text-base drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]">
                  02 — The Logic
-               </motion.p>
+               </m.p>
              </div>
              <h2 className="text-[3.5rem] sm:text-6xl md:text-[5rem] lg:text-[9rem] font-bold text-white tracking-tighter leading-[1.05]">
                Aspiring <br />
@@ -89,9 +89,9 @@ export default function About() {
           {/* Panel 3: The Aesthetics */}
           <div className="w-[100vw] h-full flex flex-col justify-center px-8 md:px-32 lg:px-48 relative">
              <div className="overflow-hidden">
-               <motion.p className="text-orange-500 tracking-[0.4em] uppercase mb-8 font-bold text-sm md:text-base drop-shadow-[0_0_15px_rgba(249,115,22,0.5)]">
+               <m.p className="text-orange-500 tracking-[0.4em] uppercase mb-8 font-bold text-sm md:text-base drop-shadow-[0_0_15px_rgba(249,115,22,0.5)]">
                  03 — The Aesthetics
-               </motion.p>
+               </m.p>
              </div>
              <h2 className="text-[3.5rem] sm:text-6xl md:text-[5rem] lg:text-[9rem] font-bold text-white tracking-tighter leading-[1.05]">
                Passionate <br />
@@ -102,7 +102,7 @@ export default function About() {
              </h2>
           </div>
 
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-const LoadingScreen = dynamic(() => import('@/components/LoadingScreen'));
+import LoadingScreen from '@/components/LoadingScreen';
 const ScrollyCanvas = dynamic(() => import('@/components/ScrollyCanvas'), { 
   ssr: false,
   loading: () => <div style={{ height: '500vh', width: '100%', backgroundColor: '#121212' }} />
@@ -10,7 +10,7 @@ const About = dynamic(() => import('@/components/About'));
 const Skills = dynamic(() => import('@/components/Skills'));
 const Projects = dynamic(() => import('@/components/Projects'));
 const Services = dynamic(() => import('@/components/Services'));
-const Header = dynamic(() => import('@/components/Header'));
+import Header from '@/components/Header';
 const Footer = dynamic(() => import('@/components/Footer'));
 
 export default function Home() {

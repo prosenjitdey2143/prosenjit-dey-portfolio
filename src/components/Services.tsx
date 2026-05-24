@@ -1,6 +1,6 @@
 'use client';
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { m, useScroll, useTransform } from 'framer-motion';
 
 // UPDATE THIS NUMBER TO YOUR ACTUAL WHATSAPP NUMBER
 const WHATSAPP_NUMBER = "9163253013"; 
@@ -54,7 +54,7 @@ export default function Services() {
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
          
          {/* Massive Cinematic Color Orb that travels and morphs based on scroll */}
-         <motion.div 
+         <m.div 
            className="absolute top-1/2 -translate-y-1/2 w-[100vw] h-[100vw] md:w-[60vw] md:h-[60vw] rounded-full blur-[140px] md:blur-[180px] pointer-events-none z-0 mix-blend-screen opacity-50"
            style={{ 
              left: useTransform(scrollYProgress, [0, 1], ["10%", "90%"]),
@@ -82,7 +82,7 @@ export default function Services() {
          </div>
 
          {/* The Horizontal Track */}
-         <motion.div style={{ x }} className="flex w-[500vw] h-full items-center relative z-10">
+         <m.div style={{ x }} className="flex w-[500vw] h-full items-center relative z-10">
             {services.map((service, index) => {
               const message = encodeURIComponent(`Hi! I'm interested in your ${service.title} service. Could we discuss this further?`);
               const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
@@ -130,11 +130,11 @@ export default function Services() {
                 </div>
               )
             })}
-         </motion.div>
+         </m.div>
 
          {/* Scroll Progress Bar */}
          <div className="absolute bottom-10 md:bottom-16 left-6 md:left-16 right-6 md:right-16 h-1 bg-white/10 rounded-full overflow-hidden z-20">
-            <motion.div 
+            <m.div 
               className="h-full bg-white rounded-full" 
               style={{ scaleX: scrollYProgress, transformOrigin: "left" }} 
             />

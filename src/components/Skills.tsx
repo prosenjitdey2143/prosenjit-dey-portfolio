@@ -1,6 +1,6 @@
 'use client';
 import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { m, useScroll, useSpring } from 'framer-motion';
 
 const SKILLS = [
   { name: 'AI Tools', desc: 'Using multiple AI tools for website development, image, and video processing', glow: 'from-fuchsia-600/40 to-purple-600/40' },
@@ -16,7 +16,7 @@ function SkillNode({ skill, index }: { skill: typeof SKILLS[0], index: number })
   const isEven = index % 2 === 0;
 
   return (
-    <motion.div 
+    <m.div 
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.4 }} // Triggers when 40% of the node is visible on screen
@@ -24,14 +24,14 @@ function SkillNode({ skill, index }: { skill: typeof SKILLS[0], index: number })
     >
       {/* Node placed absolutely on the trunk */}
       <div className="absolute left-8 md:left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
-         <motion.div 
+         <m.div 
            variants={{
              hidden: { scale: 0, opacity: 0 },
              visible: { scale: 1, opacity: 1 }
            }}
            className="w-4 h-4 md:w-6 md:h-6 rounded-full bg-white shadow-[0_0_30px_rgba(255,255,255,1)]"
          />
-         <motion.div 
+         <m.div 
            variants={{
              hidden: { scale: 0.8, opacity: 0 },
              visible: { scale: 2.5, opacity: 0 }
@@ -48,23 +48,23 @@ function SkillNode({ skill, index }: { skill: typeof SKILLS[0], index: number })
          <div className={`w-full md:w-[45%] pl-24 md:pl-0 flex flex-col ${isEven ? 'md:items-end md:text-right' : 'md:items-start md:text-left'}`}>
             
             {/* Phase Badge */}
-            <motion.div 
+            <m.div 
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               className="inline-block bg-white/5 px-6 py-2 rounded-full border border-white/10 backdrop-blur-md mb-6 shadow-[0_0_20px_rgba(255,255,255,0.05)] self-start md:self-auto"
             >
               <span className="text-white/60 tracking-[0.2em] uppercase text-xs md:text-sm font-bold">
                 Phase 0{index + 1}
               </span>
-            </motion.div>
+            </m.div>
 
             {/* Glowing Ambient Background activated on view */}
-            <motion.div 
+            <m.div 
                variants={{ hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 0.5, scale: 1 } }}
                transition={{ duration: 1.5, ease: "easeOut" }}
                className={`absolute top-1/2 ${isEven ? 'md:left-[25%]' : 'md:right-[25%]'} left-1/2 -translate-x-1/2 -translate-y-1/2 w-[25rem] h-[25rem] bg-gradient-to-br ${skill.glow} blur-[120px] rounded-full pointer-events-none z-[-1]`}
             />
 
-            <motion.h3 
+            <m.h3 
               variants={{ 
                 hidden: { opacity: 0, x: isEven ? -50 : 50, filter: "blur(10px)" }, 
                 visible: { opacity: 1, x: 0, filter: "blur(0px)" } 
@@ -73,18 +73,18 @@ function SkillNode({ skill, index }: { skill: typeof SKILLS[0], index: number })
               className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-black tracking-tighter mb-4 text-white drop-shadow-2xl leading-[0.9]"
             >
               {skill.name}
-            </motion.h3>
+            </m.h3>
             
-            <motion.p 
+            <m.p 
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-gray-400 text-base md:text-xl font-light leading-relaxed max-w-sm"
             >
               {skill.desc}
-            </motion.p>
+            </m.p>
          </div>
       </div>
-    </motion.div>
+    </m.div>
   )
 }
 
@@ -147,27 +147,27 @@ export default function Skills() {
       className="relative bg-[#050505] py-32 overflow-hidden z-20"
     >
        {/* Interactive Hover Glow */}
-       <motion.div
+       <m.div
          style={{ x: mouseX, y: mouseY }}
          animate={{ opacity: isHovered ? 0.4 : 0.1, scale: isHovered ? 1.5 : 1 }}
          transition={{ duration: 0.8 }}
          className="absolute top-0 left-0 w-[50vw] h-[50vw] md:w-[30vw] md:h-[30vw] rounded-full pointer-events-none z-0"
        >
           <div className="absolute inset-0 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-tr from-emerald-600/40 via-cyan-500/30 to-transparent blur-[120px] md:blur-[160px] pointer-events-none" />
-       </motion.div>
+       </m.div>
 
        {/* Cinematic Grid Background */}
        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0" />
 
        {/* Section Header */}
        <div className="relative z-50 text-center w-full mb-32 px-4">
-         <motion.p 
+         <m.p 
            initial={{ opacity: 0 }}
            whileInView={{ opacity: 1 }}
            className="text-gray-500 tracking-[0.4em] uppercase text-xs md:text-sm font-bold mb-4 drop-shadow-md"
          >
            What I Know
-         </motion.p>
+         </m.p>
          <h2 className="text-5xl sm:text-6xl md:text-[6rem] lg:text-[8rem] font-black text-white tracking-tighter drop-shadow-2xl leading-[0.9]">
            My Skills.
          </h2>
@@ -180,7 +180,7 @@ export default function Skills() {
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-white/10 -translate-x-1/2 rounded-full" />
           
           {/* Glowing Energy Beam (Scroll Progress) */}
-          <motion.div 
+          <m.div 
             className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[4px] bg-gradient-to-b from-white via-emerald-400 to-transparent -translate-x-1/2 rounded-full z-10 origin-top shadow-[0_0_30px_rgba(52,211,153,0.8)]"
             style={{ scaleY: scrollYProgress }}
           />

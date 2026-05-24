@@ -9,6 +9,7 @@ const inter = Inter({
 
 import CustomCursor from "@/components/CustomCursor";
 import SmoothScroll from "@/components/SmoothScroll";
+import { LazyMotion, domMax } from "framer-motion";
 
 export const metadata: Metadata = {
   title: "Prosenjit Dey | Creative Developer",
@@ -27,10 +28,12 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="bg-[#121212] font-sans text-white overflow-x-hidden cursor-none" suppressHydrationWarning>
-        <CustomCursor />
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+        <LazyMotion features={domMax}>
+          <CustomCursor />
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
+        </LazyMotion>
       </body>
     </html>
   );

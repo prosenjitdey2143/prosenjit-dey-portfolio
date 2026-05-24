@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
-import { motion, useSpring } from 'framer-motion';
+import { m, useSpring } from 'framer-motion';
 
 const WHATSAPP_NUMBER = "9163253013";
 
@@ -83,14 +83,14 @@ export default function Footer() {
       className="relative min-h-[70vh] bg-[#020202] text-white flex flex-col justify-between overflow-hidden border-t border-white/10 z-20"
     >
       {/* Massive Fluid Color Background that matches the top-of-website vibe */}
-      <motion.div
+      <m.div
         style={{ x: mouseX, y: mouseY }}
         animate={{ opacity: isHovered ? 0.7 : 0.3, scale: isHovered ? 1.2 : 1 }}
         transition={{ duration: 0.8 }}
         className="absolute top-0 left-0 w-[50vw] h-[50vw] md:w-[30vw] md:h-[30vw] rounded-full pointer-events-none z-0"
       >
          <div className="absolute inset-0 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-tr from-violet-600 via-fuchsia-500 to-green-500 blur-[100px] md:blur-[140px] opacity-70 animate-pulse" />
-      </motion.div>
+      </m.div>
 
       {/* Grid Pattern Overlay to make the light look more cinematic */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0" />

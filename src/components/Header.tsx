@@ -1,5 +1,5 @@
 'use client';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
 
 const GithubIcon = ({ className }: { className?: string }) => (
@@ -98,7 +98,7 @@ export default function Header() {
 
   return (
     <>
-      <motion.header 
+      <m.header 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
@@ -127,12 +127,12 @@ export default function Header() {
           <span className="w-12 h-[2px] bg-white group-hover:w-8 transition-all duration-300 ease-out" />
           <span className="w-8 h-[2px] bg-white group-hover:w-12 transition-all duration-300 ease-out" />
         </button>
-      </motion.header>
+      </m.header>
 
       {/* FULL SCREEN MENU OVERLAY */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <m.div 
             initial={{ y: '-100%' }}
             animate={{ y: '0%' }}
             exit={{ y: '-100%' }}
@@ -176,7 +176,7 @@ export default function Header() {
                <nav className="flex flex-col flex-1 justify-center lg:pl-24 gap-6 md:gap-10">
                  {navLinks.map((item, i) => (
                     <div key={item.name} className="overflow-hidden group">
-                      <motion.a 
+                      <m.a 
                         href={item.href}
                         onClick={() => setIsOpen(false)}
                         initial={{ y: '100%', rotate: 5 }}
@@ -191,7 +191,7 @@ export default function Header() {
                         <span className="text-4xl sm:text-5xl md:text-7xl xl:text-[6rem] font-bold text-white tracking-tighter uppercase transition-transform duration-500 group-hover:translate-x-8">
                           <SlidingText text={item.name} />
                         </span>
-                      </motion.a>
+                      </m.a>
                     </div>
                  ))}
                </nav>
@@ -199,7 +199,7 @@ export default function Header() {
             </div>
 
             {/* Footer inside Menu */}
-            <motion.div 
+            <m.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -229,8 +229,8 @@ export default function Header() {
               <div className="text-white/30 text-[10px] tracking-[0.3em] uppercase font-bold">
                 © 2026 Prosenjit Dey
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

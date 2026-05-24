@@ -1,6 +1,6 @@
 'use client';
 import { useRef, useState } from 'react';
-import { motion, useScroll, useMotionValueEvent, useMotionValue, useTransform } from 'framer-motion';
+import { m, useScroll, useMotionValueEvent, useMotionValue, useTransform } from 'framer-motion';
 
 const projects = [
   { 
@@ -124,7 +124,7 @@ export default function Projects() {
              My Work
            </h2>
            
-           <motion.div 
+           <m.div 
              onMouseMove={handleMouseMove}
              onMouseLeave={handleMouseLeave}
              onTouchMove={handleTouchMove}
@@ -133,7 +133,7 @@ export default function Projects() {
              className="w-full h-[70vh] rounded-[3rem] overflow-hidden relative shadow-[0_20px_100px_rgba(0,0,0,0.8)] border border-white/10 bg-[#020202] cursor-crosshair"
            >
               {projects.map((project, idx) => (
-                 <motion.img 
+                 <m.img 
                    key={`img-${project.id}`}
                    src={project.img}
                    loading="lazy"
@@ -151,7 +151,7 @@ export default function Projects() {
               ))}
               {/* Subtle overlay so the image isn't completely raw */}
               <div className="absolute inset-0 bg-black/10 mix-blend-overlay pointer-events-none" />
-           </motion.div>
+           </m.div>
         </div>
 
         {/* RIGHT SIDE: Scrolling Typography */}
@@ -161,7 +161,7 @@ export default function Projects() {
                key={`text-${project.id}`} 
                className="h-screen w-full flex flex-col justify-center pr-12 lg:pr-24 pl-8 lg:pl-16"
              >
-                <motion.div 
+                <m.div 
                   className="max-w-3xl"
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -200,7 +200,7 @@ export default function Projects() {
                          Source Code
                       </a>
                    </div>
-                </motion.div>
+                </m.div>
              </div>
            ))}
         </div>

@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 const FRAME_COUNT = 120; // Number of images in the cinematic sequence
 
@@ -41,7 +41,7 @@ export default function LoadingScreen() {
   return (
     <AnimatePresence>
       {loading && (
-        <motion.div
+        <m.div
           key="loading-screen"
           // We fade the entire black background out at the very end
           exit={{ opacity: 0 }}
@@ -53,7 +53,7 @@ export default function LoadingScreen() {
             This starts as a small portrait window showing the very first frame of the sequence.
             When loading finishes, it expands to cover the entire screen seamlessly.
           */}
-          <motion.div
+          <m.div
             initial={{ width: "240px", height: "360px", borderRadius: "24px" }}
             animate={progress === 100 ? { 
               width: "100vw", 
@@ -68,7 +68,7 @@ export default function LoadingScreen() {
             className="relative overflow-hidden z-10 shadow-[0_0_100px_rgba(0,0,0,0.8)] border border-white/10"
           >
              {/* The actual sequence image inside the window. */}
-             <motion.img 
+             <m.img 
                src="./sequence/compressed_frame_000_delay-0.066s.png"
                alt="Loading Sequence"
                className="absolute inset-0 w-full h-full object-cover"
@@ -83,7 +83,7 @@ export default function LoadingScreen() {
              {/* Progress text inside the window */}
              <AnimatePresence>
                {progress < 100 && (
-                 <motion.div 
+                 <m.div 
                    exit={{ opacity: 0, y: 10 }}
                    transition={{ duration: 0.3 }}
                    className="absolute inset-0 flex flex-col items-center justify-end pb-8"
@@ -94,15 +94,15 @@ export default function LoadingScreen() {
                    <p className="text-white text-5xl font-bold tracking-tighter tabular-nums drop-shadow-lg">
                      {progress}%
                    </p>
-                 </motion.div>
+                 </m.div>
                )}
              </AnimatePresence>
-          </motion.div>
+          </m.div>
 
           {/* Decorative architectural grid lines outside the window */}
           <AnimatePresence>
             {progress < 100 && (
-              <motion.div 
+              <m.div 
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
                 className="absolute inset-0 pointer-events-none"
@@ -114,11 +114,11 @@ export default function LoadingScreen() {
                 {/* Vertical crosshair */}
                 <div className="absolute top-0 left-1/2 w-[1px] h-[calc(50%-180px)] bg-white/10 -translate-x-1/2" />
                 <div className="absolute bottom-0 left-1/2 w-[1px] h-[calc(50%-180px)] bg-white/10 -translate-x-1/2" />
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
 
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );
