@@ -3,13 +3,13 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
 const SKILLS = [
-  { name: 'AI Engineering', desc: 'Antigravity, ChatGPT & Agentic Workflows', glow: 'from-fuchsia-600/40 to-purple-600/40' },
-  { name: 'React & Next.js', desc: 'High-performance interactive web apps', glow: 'from-cyan-500/40 to-blue-600/40' },
-  { name: 'Vibe Coding', desc: 'AI-assisted creative development', glow: 'from-orange-500/40 to-rose-600/40' },
-  { name: 'JavaScript ES6', desc: 'Complex core logic and architecture', glow: 'from-yellow-500/40 to-amber-600/40' },
-  { name: 'UI/UX & Graphics', desc: 'Cinematic visual design and layouts', glow: 'from-pink-500/40 to-rose-600/40' },
-  { name: 'HTML5 & CSS3', desc: 'The fundamental building blocks', glow: 'from-indigo-500/40 to-blue-600/40' },
-  { name: 'CMS Platforms', desc: 'WordPress, Bootstrap, legacy support', glow: 'from-teal-500/40 to-emerald-600/40' },
+  { name: 'AI Tools', desc: 'Using multiple AI tools for website development, image, and video processing', glow: 'from-fuchsia-600/40 to-purple-600/40' },
+  { name: 'React & Next.js', desc: 'Creating fast and interactive websites', glow: 'from-cyan-500/40 to-blue-600/40' },
+  { name: 'Vibe Coding', desc: 'Making beautiful designs using AI helpers', glow: 'from-orange-500/40 to-rose-600/40' },
+  { name: 'JavaScript', desc: 'Writing the main logic to make websites work', glow: 'from-yellow-500/40 to-amber-600/40' },
+  { name: 'Web Design', desc: 'Designing cool, modern, and easy-to-use layouts', glow: 'from-pink-500/40 to-rose-600/40' },
+  { name: 'HTML & CSS', desc: 'Building the basic structure and style of web pages', glow: 'from-indigo-500/40 to-blue-600/40' },
+  { name: 'WordPress', desc: 'Making websites that are easy for clients to manage', glow: 'from-teal-500/40 to-emerald-600/40' },
 ];
 
 function SkillCard({ 
@@ -146,10 +146,10 @@ export default function Skills() {
                  whileInView={{ opacity: 1 }}
                  className="text-gray-500 tracking-[0.4em] uppercase text-xs md:text-sm font-bold mb-2 drop-shadow-md"
                >
-                 The Arsenal
+                 What I Know
                </motion.p>
                <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter drop-shadow-xl">
-                 Core Competencies.
+                 My Skills.
                </h2>
              </div>
 
