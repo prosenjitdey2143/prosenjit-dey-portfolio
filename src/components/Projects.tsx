@@ -9,7 +9,7 @@ const projects = [
     category: 'HTML5 / Vanilla CSS / UI Design', 
     github: 'https://github.com/prosenjitdey2143/the-vinci-tattoo-studio',
     live: 'https://prosenjitdey2143.github.io/the-vinci-tattoo-studio/', 
-    img: '/vinci-preview.jpg',
+    img: './vinci-preview.jpg',
     color: 'rgba(239, 68, 68, 0.15)' // Red
   },
   { 
@@ -18,7 +18,7 @@ const projects = [
     category: 'HTML5 / CSS / Real Estate UI', 
     github: 'https://github.com/prosenjitdey2143/nestra--final-project',
     live: 'https://prosenjitdey2143.github.io/nestra--final-project/', 
-    img: '/nestra-preview.png',
+    img: './nestra-preview.png',
     color: 'rgba(59, 130, 246, 0.15)' // Blue
   },
   { 
@@ -27,7 +27,7 @@ const projects = [
     category: 'React / Cinematic UI', 
     github: 'https://github.com/prosenjitdey2143/devilz-tattoo',
     live: 'https://prosenjitdey2143.github.io/devilz-tattoo/', 
-    img: '/preview-devilz.jpg',
+    img: './preview-devilz.jpg',
     color: 'rgba(249, 115, 22, 0.15)' // Orange
   },
   { 
@@ -36,7 +36,7 @@ const projects = [
     category: 'React / FinTech Landing Page', 
     github: 'https://github.com/prosenjitdey2143/IPDC-Financial-Landing-Page-Conversion',
     live: 'https://prosenjitdey2143.github.io/IPDC-Financial-Landing-Page-Conversion/', 
-    img: '/ipdc-preview.jpg',
+    img: './ipdc-preview.jpg',
     color: 'rgba(16, 185, 129, 0.15)' // Emerald
   },
   { 
@@ -45,7 +45,7 @@ const projects = [
     category: 'HTML5 / CSS / Vanilla JS', 
     github: 'https://github.com/prosenjitdey2143/sanuX-tattoo-studio-website2-demo',
     live: 'https://prosenjitdey2143.github.io/sanuX-tattoo-studio-website2-demo/', 
-    img: '/sanu-preview.jpg',
+    img: './sanu-preview.jpg',
     color: 'rgba(168, 85, 247, 0.15)' // Purple
   },
 ];

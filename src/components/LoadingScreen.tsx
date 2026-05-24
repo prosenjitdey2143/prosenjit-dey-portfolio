@@ -30,7 +30,7 @@ export default function LoadingScreen() {
     for (let i = 0; i < FRAME_COUNT; i++) {
       const img = new Image();
       const frameNum = i.toString().padStart(3, '0');
-      img.src = `/sequence/compressed_frame_${frameNum}_delay-0.066s.png`;
+      img.src = `./sequence/compressed_frame_${frameNum}_delay-0.066s.png`;
       img.onload = updateProgress;
       img.onerror = updateProgress; 
     }

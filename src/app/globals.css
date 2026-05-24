@@ -12,4 +12,13 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Globally scale down Tailwind's rem units to 80% on desktop to match the zoomed-out cinematic look */
+html {
+  font-size: 100%; /* Keep 16px default on mobile for readability */
+}
 
+@media (min-width: 1024px) {
+  html {
+    font-size: 80%; /* 1rem = 12.8px (80% of 16px) */
+  }
+}

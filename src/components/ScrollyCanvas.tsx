@@ -57,7 +57,8 @@ export default function ScrollyCanvas() {
       const img = new Image();
       // Format: compressed_frame_000_delay-0.066s.png
       const frameNum = i.toString().padStart(3, '0');
-      img.src = `/sequence/compressed_frame_${frameNum}_delay-0.066s.png`;
+      // Use relative path for GitHub Pages compatibility
+      img.src = `./sequence/compressed_frame_${frameNum}_delay-0.066s.png`;
       
       img.onload = () => {
         // Redraw if this frame is the current frame
