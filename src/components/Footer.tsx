@@ -7,9 +7,9 @@ const WHATSAPP_NUMBER = "9163253013";
 const socialLinks = [
   { name: "Email", url: "mailto:prosenjitdey2143@gmail.com" },
   { name: "WhatsApp", url: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi Prosenjit! I have a project idea and would love to talk.")}` },
-  { name: "LinkedIn", url: "#" },
-  { name: "Instagram", url: "#" },
-  { name: "Facebook", url: "#" }
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/prosenjitdey" },
+  { name: "Instagram", url: "https://www.instagram.com/prosenjit_dey2143/" },
+  { name: "Facebook", url: "https://www.facebook.com/prosenjit.dey.1217/" }
 ];
 
 export default function Footer() {

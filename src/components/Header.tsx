@@ -209,15 +209,17 @@ export default function Header() {
               <div className="flex gap-8">
                 <a 
                   href="https://github.com/prosenjitdey2143" 
-                  target="_blank" 
-                  rel="noreferrer" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-white/50 hover:text-white flex items-center gap-3 transition-colors duration-300 cursor-pointer group"
                 >
                   <ScrambleText text="GITHUB" className="text-xs font-bold tracking-[0.4em] uppercase" />
                   <GithubIcon className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 </a>
                 <a 
-                  href="#" 
+                  href="https://www.linkedin.com/in/prosenjitdey" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-white/50 hover:text-white flex items-center gap-3 transition-colors duration-300 cursor-pointer group"
                 >
                   <ScrambleText text="LINKEDIN" className="text-xs font-bold tracking-[0.4em] uppercase" />
