@@ -37,6 +37,25 @@ export default function Footer() {
     return () => clearInterval(interval);
   }, []);
 
+  // Set initial glow position to the center of the footer
+  useEffect(() => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      mouseX.set(rect.width / 2);
+      mouseY.set(rect.height / 2);
+    }
+  }, [mouseX, mouseY]);
+
+  // Reset glow position to center when mouse leaves
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      mouseX.set(rect.width / 2);
+      mouseY.set(rect.height / 2);
+    }
+  };
+
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
@@ -59,14 +78,14 @@ export default function Footer() {
       onTouchMove={handleTouchMove}
       onMouseEnter={() => setIsHovered(true)}
       onTouchStart={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onTouchEnd={() => setIsHovered(false)}
+      onMouseLeave={handleMouseLeave}
+      onTouchEnd={handleMouseLeave}
       className="relative min-h-[70vh] bg-[#020202] text-white flex flex-col justify-between overflow-hidden border-t border-white/10 z-20"
     >
       {/* Massive Fluid Color Background that matches the top-of-website vibe */}
       <motion.div
         style={{ x: mouseX, y: mouseY }}
-        animate={{ opacity: isHovered ? 0.6 : 0 }}
+        animate={{ opacity: isHovered ? 0.7 : 0.3, scale: isHovered ? 1.2 : 1 }}
         transition={{ duration: 0.8 }}
         className="absolute top-0 left-0 w-[50vw] h-[50vw] md:w-[30vw] md:h-[30vw] rounded-full pointer-events-none z-0"
       >
@@ -90,7 +109,7 @@ export default function Footer() {
             </span>
          </div>
 
-         <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-16 drop-shadow-2xl selection:bg-fuchsia-500/30">
+         <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-9xl font-black tracking-tighter mb-16 drop-shadow-2xl selection:bg-fuchsia-500/30">
             LET'S CREATE <br className="hidden md:block" /> SOMETHING <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">EPIC.</span>
          </h2>
 

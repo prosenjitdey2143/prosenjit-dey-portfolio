@@ -73,7 +73,7 @@ export default function Services() {
          />
 
          <div className="absolute top-32 lg:top-24 w-full px-6 md:px-16 flex justify-between items-center z-20 pointer-events-none">
-            <h2 className="text-sm md:text-xl tracking-[0.4em] uppercase font-bold text-white/30">
+            <h2 className="text-sm md:text-xl lg:text-3xl tracking-[0.4em] uppercase font-bold text-white/30">
               What I Do
             </h2>
             <span className="text-white/20 font-light tracking-[0.2em] text-sm md:text-base">
@@ -101,10 +101,10 @@ export default function Services() {
                    <div className="relative z-10 max-w-4xl flex flex-col">
                       <div className="mb-6 md:mb-10 flex items-center gap-6">
                         <span className="w-12 md:w-20 h-[1px] bg-white/20 block" />
-                        <span className="text-xl md:text-3xl font-light text-white/40 tracking-[0.2em]">SERVICE 0{index + 1}</span>
+                        <span className="text-xl md:text-3xl lg:text-4xl font-light text-white/40 tracking-[0.2em]">SERVICE 0{index + 1}</span>
                       </div>
                       
-                      <h3 className="text-4xl sm:text-5xl md:text-7xl lg:text-[7rem] font-bold tracking-tighter text-white mb-8 md:mb-12 leading-[1.1] drop-shadow-2xl">
+                      <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-[7rem] font-bold tracking-tighter text-white mb-8 md:mb-12 leading-[1.1] drop-shadow-2xl">
                         {service.title}
                       </h3>
                       

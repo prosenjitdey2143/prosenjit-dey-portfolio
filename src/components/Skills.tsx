@@ -1,6 +1,6 @@
 'use client';
 import { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 
 const SKILLS = [
   { name: 'AI Tools', desc: 'Using multiple AI tools for website development, image, and video processing', glow: 'from-fuchsia-600/40 to-purple-600/40' },
@@ -12,117 +12,80 @@ const SKILLS = [
   { name: 'WordPress', desc: 'Making websites that are easy for clients to manage', glow: 'from-teal-500/40 to-emerald-600/40' },
 ];
 
-function SkillCard({ 
-  skill, 
-  index, 
-  progress, 
-  totalCards 
-}: { 
-  skill: typeof SKILLS[0], 
-  index: number, 
-  progress: MotionValue<number>, 
-  totalCards: number 
-}) {
-  // Add a "pause factor" (e.g. 1) to the total range so the animations finish 
-  // BEFORE the scroll progress reaches 1.0. This gives the user time to read the last card.
-  const scrollRange = totalCards + 1; 
-
-  const slideStart = Math.max(0, (index - 1) / scrollRange);
-  const slideEnd = index / scrollRange;
-
-  const scaleStart = index / scrollRange;
-  const scaleEnd = Math.min(1, (index + 1) / scrollRange);
-
-  const y = useTransform(
-    progress, 
-    [slideStart, slideEnd], 
-    [index === 0 ? "0vh" : "150vh", "0vh"]
-  );
-
-  const scale = useTransform(
-    progress, 
-    [scaleStart, scaleEnd], 
-    [1, 0.92]
-  );
-
-  // Instead of fading the entire card out (which caused the messy text bleed),
-  // we fade IN a black overlay to simulate 3D shadow depth as it gets covered.
-  const shadowOpacity = useTransform(
-    progress,
-    [scaleStart, scaleEnd],
-    [0, 0.8]
-  );
+function SkillNode({ skill, index }: { skill: typeof SKILLS[0], index: number }) {
+  const isEven = index % 2 === 0;
 
   return (
     <motion.div 
-      className="absolute top-0 left-0 w-full h-full rounded-[2.5rem] p-6 md:p-12 overflow-hidden border border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)] bg-[#050505]"
-      style={{ 
-        y, 
-        scale,
-        zIndex: index,
-        top: `calc(5vh + ${index * 16}px)`, // Spacing for the top folders
-        transformOrigin: "top center" // Ensures it shrinks from the top, keeping the top edge visible
-      }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.4 }} // Triggers when 40% of the node is visible on screen
+      className="relative w-full max-w-7xl mx-auto py-16 md:py-32 group"
     >
-      {/* Dynamic Depth Shadow that darkens the card as it goes to the background */}
-      <motion.div 
-        className="absolute inset-0 bg-black z-50 pointer-events-none"
-        style={{ opacity: index === totalCards - 1 ? 0 : shadowOpacity }}
-      />
-
-      {/* Vibrant Ambient Glow Orb inside the card */}
-      <div className={`absolute -top-32 -right-32 w-[30rem] h-[30rem] bg-gradient-to-br ${skill.glow} blur-[100px] rounded-full pointer-events-none`} />
-      <div className={`absolute -bottom-32 -left-32 w-[20rem] h-[20rem] bg-gradient-to-tr ${skill.glow} blur-[100px] rounded-full pointer-events-none opacity-50`} />
-      
-      {/* Cinematic Film Grain */}
-      <div className="absolute inset-0 opacity-[0.08] mix-blend-overlay pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
-
-      {/* Massive Typographic Watermark */}
-      <div className="absolute -bottom-16 right-4 text-[10rem] sm:text-[15rem] md:text-[22rem] font-bold text-white/[0.02] leading-none pointer-events-none select-none tracking-tighter">
-        0{index + 1}
+      {/* Node placed absolutely on the trunk */}
+      <div className="absolute left-8 md:left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
+         <motion.div 
+           variants={{
+             hidden: { scale: 0, opacity: 0 },
+             visible: { scale: 1, opacity: 1 }
+           }}
+           className="w-4 h-4 md:w-6 md:h-6 rounded-full bg-white shadow-[0_0_30px_rgba(255,255,255,1)]"
+         />
+         <motion.div 
+           variants={{
+             hidden: { scale: 0.8, opacity: 0 },
+             visible: { scale: 2.5, opacity: 0 }
+           }}
+           transition={{ duration: 2, repeat: Infinity }}
+           className="absolute w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white/50"
+         />
       </div>
 
-      <div className="relative z-10 flex flex-col justify-between h-full">
-        {/* Top Header Row */}
-        <div className="flex justify-between items-start">
-           <div className="bg-white/5 px-6 py-2 rounded-full border border-white/10 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.05)]">
-             <p className="text-white tracking-[0.3em] uppercase text-xs md:text-sm font-semibold">
-               Phase {index + 1}
-             </p>
-           </div>
-           
-           {/* Tech Icon */}
-           <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md shadow-[0_0_30px_rgba(255,255,255,0.05)]">
-              <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-           </div>
-        </div>
-
-        {/* Bottom Content Row */}
-        <div>
-          <h3 className="text-4xl sm:text-5xl md:text-[6.5rem] font-bold tracking-tighter mb-6 md:mb-8 leading-[0.9] text-white drop-shadow-xl">
-            {skill.name}
-          </h3>
-          
-          <div className="h-[1px] w-full bg-gradient-to-r from-white/20 to-transparent mb-6" />
-          
-          <div className="flex items-center justify-between">
-            <p className="text-gray-300 text-lg md:text-2xl font-light">
-              {skill.desc}
-            </p>
+      {/* Content wrapper */}
+      <div className={`relative z-10 w-full flex ${isEven ? 'md:justify-start' : 'md:justify-end'}`}>
+         
+         {/* Text block takes up 45% width on desktop, padded left on mobile to avoid trunk */}
+         <div className={`w-full md:w-[45%] pl-24 md:pl-0 flex flex-col ${isEven ? 'md:items-end md:text-right' : 'md:items-start md:text-left'}`}>
             
-            {/* Tech Dots */}
-            <div className="hidden md:flex gap-3">
-              <span className="w-2 h-2 rounded-full bg-white/20" />
-              <span className="w-2 h-2 rounded-full bg-white/20" />
-              <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-            </div>
-          </div>
-        </div>
+            {/* Phase Badge */}
+            <motion.div 
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="inline-block bg-white/5 px-6 py-2 rounded-full border border-white/10 backdrop-blur-md mb-6 shadow-[0_0_20px_rgba(255,255,255,0.05)] self-start md:self-auto"
+            >
+              <span className="text-white/60 tracking-[0.2em] uppercase text-xs md:text-sm font-bold">
+                Phase 0{index + 1}
+              </span>
+            </motion.div>
+
+            {/* Glowing Ambient Background activated on view */}
+            <motion.div 
+               variants={{ hidden: { opacity: 0, scale: 0.5 }, visible: { opacity: 0.5, scale: 1 } }}
+               transition={{ duration: 1.5, ease: "easeOut" }}
+               className={`absolute top-1/2 ${isEven ? 'md:left-[25%]' : 'md:right-[25%]'} left-1/2 -translate-x-1/2 -translate-y-1/2 w-[25rem] h-[25rem] bg-gradient-to-br ${skill.glow} blur-[120px] rounded-full pointer-events-none z-[-1]`}
+            />
+
+            <motion.h3 
+              variants={{ 
+                hidden: { opacity: 0, x: isEven ? -50 : 50, filter: "blur(10px)" }, 
+                visible: { opacity: 1, x: 0, filter: "blur(0px)" } 
+              }}
+              transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-black tracking-tighter mb-4 text-white drop-shadow-2xl leading-[0.9]"
+            >
+              {skill.name}
+            </motion.h3>
+            
+            <motion.p 
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-gray-400 text-base md:text-xl font-light leading-relaxed max-w-sm"
+            >
+              {skill.desc}
+            </motion.p>
+         </div>
       </div>
     </motion.div>
-  );
+  )
 }
 
 export default function Skills() {
@@ -130,43 +93,46 @@ export default function Skills() {
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"]
+    offset: ["start center", "end bottom"]
   });
 
   return (
-    <section id="skills" ref={containerRef} className="relative bg-[#050505] pb-[80px]">
-       {/* Height is equal to total cards * 100vh to allow smooth scrolling through the entire deck */}
-       <div className="h-[800vh] relative w-full">
-          <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-4 md:px-12 py-24">
-             
-             {/* Section Header */}
-             <div className="absolute top-32 lg:top-24 text-center w-full z-50 pointer-events-none">
-               <motion.p 
-                 initial={{ opacity: 0 }}
-                 whileInView={{ opacity: 1 }}
-                 className="text-gray-500 tracking-[0.4em] uppercase text-xs md:text-sm font-bold mb-2 drop-shadow-md"
-               >
-                 What I Know
-               </motion.p>
-               <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter drop-shadow-xl">
-                 My Skills.
-               </h2>
-             </div>
+    <section id="skills" ref={containerRef} className="relative bg-[#050505] py-32 overflow-hidden z-20">
+       
+       {/* Cinematic Grid Background */}
+       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0" />
 
-             {/* Stacking Cards Deck Container */}
-             <div className="relative w-full max-w-6xl h-[65vh] md:h-[75vh] mt-12 md:mt-24">
-               {SKILLS.map((skill, index) => (
-                 <SkillCard 
-                   key={skill.name} 
-                   skill={skill} 
-                   index={index} 
-                   progress={scrollYProgress} 
-                   totalCards={SKILLS.length} 
-                 />
-               ))}
-             </div>
+       {/* Section Header */}
+       <div className="relative z-50 text-center w-full mb-32 px-4">
+         <motion.p 
+           initial={{ opacity: 0 }}
+           whileInView={{ opacity: 1 }}
+           className="text-gray-500 tracking-[0.4em] uppercase text-xs md:text-sm font-bold mb-4 drop-shadow-md"
+         >
+           What I Know
+         </motion.p>
+         <h2 className="text-5xl sm:text-6xl md:text-[6rem] lg:text-[8rem] font-black text-white tracking-tighter drop-shadow-2xl leading-[0.9]">
+           My Skills.
+         </h2>
+       </div>
 
-          </div>
+       {/* Tree Container */}
+       <div className="relative w-full max-w-7xl mx-auto px-4 md:px-12 pb-32">
+          
+          {/* Base Trunk Line (Dim) */}
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-white/10 -translate-x-1/2 rounded-full" />
+          
+          {/* Glowing Energy Beam (Scroll Progress) */}
+          <motion.div 
+            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[4px] bg-gradient-to-b from-white via-emerald-400 to-transparent -translate-x-1/2 rounded-full z-10 origin-top shadow-[0_0_30px_rgba(52,211,153,0.8)]"
+            style={{ scaleY: scrollYProgress }}
+          />
+
+          {/* Nodes */}
+          {SKILLS.map((skill, index) => (
+             <SkillNode key={skill.name} skill={skill} index={index} />
+          ))}
+
        </div>
     </section>
   )

@@ -212,9 +212,14 @@ export default function Projects() {
         ===========================================
       */}
       <div className="xl:hidden flex flex-col px-4 md:px-12 pt-32 md:pt-40 pb-32">
-         <h2 className="text-3xl font-bold text-white tracking-[0.2em] uppercase text-center mb-16">
-           My Work
-         </h2>
+         <div className="relative z-50 text-center w-full mb-16 lg:mb-24">
+           <p className="text-gray-500 tracking-[0.4em] uppercase text-xs md:text-sm font-bold mb-4 drop-shadow-md">
+             Recent Projects
+           </p>
+           <h2 className="text-5xl sm:text-6xl md:text-[6rem] lg:text-[8rem] font-black text-white tracking-tighter drop-shadow-2xl leading-[0.9]">
+             My Work.
+           </h2>
+         </div>
          
          <div className="flex flex-col gap-[10vh]">
            {projects.map((project, idx) => (
@@ -234,7 +239,7 @@ export default function Projects() {
                       {project.category}
                    </p>
                    
-                   <h3 className="text-4xl font-bold text-white tracking-tighter leading-[0.9] mb-8">
+                   <h3 className="text-4xl lg:text-6xl font-bold text-white tracking-tighter leading-[0.9] mb-6 lg:mb-8 drop-shadow-xl">
                      {project.title}
                    </h3>
                    
