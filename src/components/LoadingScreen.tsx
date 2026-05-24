@@ -5,12 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 const FRAME_COUNT = 120; // Number of images in the cinematic sequence
 
 export default function LoadingScreen() {
-  const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    setMounted(true);
     document.body.style.overflow = 'hidden';
     
     let loadedCount = 0;
@@ -39,8 +37,6 @@ export default function LoadingScreen() {
       document.body.style.overflow = '';
     };
   }, []);
-
-  if (!mounted) return null;
 
   return (
     <AnimatePresence>
@@ -73,7 +69,7 @@ export default function LoadingScreen() {
           >
              {/* The actual sequence image inside the window. */}
              <motion.img 
-               src="/sequence/compressed_frame_000_delay-0.066s.png"
+               src="./sequence/compressed_frame_000_delay-0.066s.png"
                alt="Loading Sequence"
                className="absolute inset-0 w-full h-full object-cover"
                initial={{ scale: 1.2 }}
