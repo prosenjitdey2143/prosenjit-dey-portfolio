@@ -125,6 +125,8 @@ export default function Projects() {
                  <motion.img 
                    key={`img-${project.id}`}
                    src={project.img}
+                   loading="lazy"
+                   decoding="async"
                    alt={project.title}
                    className="absolute inset-0 w-full h-full object-cover"
                    initial={false}
@@ -210,7 +212,7 @@ export default function Projects() {
                className="sticky top-24 w-full h-[70vh] rounded-[2rem] overflow-hidden shadow-[0_10px_50px_rgba(0,0,0,0.8)] border border-white/10 bg-[#020202]"
              >
                 {/* Image */}
-                <img src={project.img} className="absolute inset-0 w-full h-full object-cover" />
+                <img src={project.img} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/30" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/60 to-transparent" />
                 

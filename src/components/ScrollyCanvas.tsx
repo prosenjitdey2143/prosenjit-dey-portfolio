@@ -49,48 +49,78 @@ export default function ScrollyCanvas() {
     }
   };
 
-  // Preload images
+  // Preload images optimally
   useEffect(() => {
-    const loadedImages: HTMLImageElement[] = [];
+    let isCancelled = false;
+    const loadedImages: HTMLImageElement[] = new Array(FRAME_COUNT);
     
-    for (let i = 0; i < FRAME_COUNT; i++) {
+    const loadFrame = (i: number) => {
+      if (isCancelled) return;
       const img = new Image();
-      // Format: compressed_frame_000_delay-0.066s.png
       const frameNum = i.toString().padStart(3, '0');
-      // Use relative path for GitHub Pages compatibility
       img.src = `./sequence/compressed_frame_${frameNum}_delay-0.066s.png`;
       
       img.onload = () => {
-        // Redraw if this frame is the current frame
+        if (isCancelled) return;
+        loadedImages[i] = img;
         if (i === Math.floor(frameIndex.get())) {
           renderFrame(i);
         }
       };
-      
-      loadedImages.push(img);
+    };
+
+    // 1. Load first 10 frames instantly
+    for (let i = 0; i < Math.min(10, FRAME_COUNT); i++) {
+      loadFrame(i);
     }
+
+    // 2. Stagger the remaining frames to unchoke the network
+    const loadRemaining = async () => {
+      for (let i = 10; i < FRAME_COUNT; i++) {
+        if (isCancelled) break;
+        loadFrame(i);
+        await new Promise(res => setTimeout(res, 10));
+      }
+    };
+    
+    // Start background loading after initial paint
+    setTimeout(loadRemaining, 500);
     imagesRef.current = loadedImages;
+
+    return () => {
+      isCancelled = true;
+    };
   }, [frameIndex]);
 
   useMotionValueEvent(frameIndex, "change", (latest) => {
     renderFrame(Math.floor(latest));
   });
 
-  // Handle canvas resize & initial draw
+  // Handle canvas resize & initial draw (debounced for performance)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     
-    const resizeCanvas = () => {
+    let resizeTimer: NodeJS.Timeout;
+
+    const performResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       renderFrame(Math.floor(frameIndex.get()));
     };
+
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(performResize, 150);
+    };
     
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+    performResize(); // Initial setup
+    window.addEventListener('resize', handleResize);
     
-    return () => window.removeEventListener('resize', resizeCanvas);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimer);
+    };
   }, [frameIndex]);
 
   return (
