@@ -1,6 +1,6 @@
 'use client';
-import { useRef } from 'react';
-import { motion, useScroll } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 
 const SKILLS = [
   { name: 'AI Tools', desc: 'Using multiple AI tools for website development, image, and video processing', glow: 'from-fuchsia-600/40 to-purple-600/40' },
@@ -90,6 +90,44 @@ function SkillNode({ skill, index }: { skill: typeof SKILLS[0], index: number })
 
 export default function Skills() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  
+  // Smooth fluid physics for the glowing orb
+  const mouseX = useSpring(0, { stiffness: 40, damping: 20 });
+  const mouseY = useSpring(0, { stiffness: 40, damping: 20 });
+
+  // Set initial glow position to center
+  useEffect(() => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      mouseX.set(rect.width / 2);
+      mouseY.set(rect.height / 2);
+    }
+  }, [mouseX, mouseY]);
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      mouseX.set(rect.width / 2);
+      mouseY.set(rect.height / 2);
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLElement>) => {
+    if (!containerRef.current) return;
+    const touch = e.touches[0];
+    const rect = containerRef.current.getBoundingClientRect();
+    mouseX.set(touch.clientX - rect.left);
+    mouseY.set(touch.clientY - rect.top);
+  };
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -97,8 +135,27 @@ export default function Skills() {
   });
 
   return (
-    <section id="skills" ref={containerRef} className="relative bg-[#050505] py-32 overflow-hidden z-20">
-       
+    <section 
+      id="skills" 
+      ref={containerRef} 
+      onMouseMove={handleMouseMove}
+      onTouchMove={handleTouchMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onTouchStart={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      onTouchEnd={handleMouseLeave}
+      className="relative bg-[#050505] py-32 overflow-hidden z-20"
+    >
+       {/* Interactive Hover Glow */}
+       <motion.div
+         style={{ x: mouseX, y: mouseY }}
+         animate={{ opacity: isHovered ? 0.4 : 0.1, scale: isHovered ? 1.5 : 1 }}
+         transition={{ duration: 0.8 }}
+         className="absolute top-0 left-0 w-[50vw] h-[50vw] md:w-[30vw] md:h-[30vw] rounded-full pointer-events-none z-0"
+       >
+          <div className="absolute inset-0 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-tr from-emerald-600/40 via-cyan-500/30 to-transparent blur-[120px] md:blur-[160px] pointer-events-none" />
+       </motion.div>
+
        {/* Cinematic Grid Background */}
        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay z-0" />
 
