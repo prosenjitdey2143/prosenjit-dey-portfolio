@@ -79,7 +79,7 @@ export default function Footer() {
             </span>
          </div>
 
-         <h2 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-16 drop-shadow-2xl selection:bg-fuchsia-500/30">
+         <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-16 drop-shadow-2xl selection:bg-fuchsia-500/30">
             LET'S CREATE <br className="hidden md:block" /> SOMETHING <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">EPIC.</span>
          </h2>
 

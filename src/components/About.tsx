@@ -57,7 +57,7 @@ export default function About() {
                  01 — The Foundation
                </motion.p>
              </div>
-             <h2 className="text-5xl md:text-[7rem] lg:text-[9rem] font-bold text-white tracking-tighter leading-[1.05]">
+             <h2 className="text-[3.5rem] sm:text-6xl md:text-[7rem] lg:text-[9rem] font-bold text-white tracking-tighter leading-[1.05]">
                I am a B.Tech <br />
                graduate from <br />
                Kolkata.
@@ -71,7 +71,7 @@ export default function About() {
                  02 — The Logic
                </motion.p>
              </div>
-             <h2 className="text-5xl md:text-[7rem] lg:text-[9rem] font-bold text-white tracking-tighter leading-[1.05]">
+             <h2 className="text-[3.5rem] sm:text-6xl md:text-[7rem] lg:text-[9rem] font-bold text-white tracking-tighter leading-[1.05]">
                Aspiring <br />
                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 filter drop-shadow-[0_0_30px_rgba(168,85,247,0.3)]">
                  Frontend Dev
@@ -87,7 +87,7 @@ export default function About() {
                  03 — The Aesthetics
                </motion.p>
              </div>
-             <h2 className="text-5xl md:text-[7rem] lg:text-[9rem] font-bold text-white tracking-tighter leading-[1.05]">
+             <h2 className="text-[3.5rem] sm:text-6xl md:text-[7rem] lg:text-[9rem] font-bold text-white tracking-tighter leading-[1.05]">
                Passionate <br />
                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 filter drop-shadow-[0_0_30px_rgba(251,146,60,0.3)]">
                  Tattoo Artist

@@ -137,7 +137,7 @@ export default function Header() {
             animate={{ y: '0%' }}
             exit={{ y: '-100%' }}
             transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[100] bg-[#050505] flex flex-col justify-between p-8 md:p-16 lg:p-24"
+            className="fixed inset-0 z-[100] bg-[#050505] flex flex-col justify-between p-6 md:p-16 lg:p-24"
           >
             {/* Menu Header */}
             <div className="flex justify-between items-start w-full">
@@ -188,7 +188,7 @@ export default function Header() {
                         <span className="text-white/20 text-sm md:text-xl font-medium tracking-widest transition-colors duration-500 group-hover:text-emerald-400">
                           0{i + 1}
                         </span>
-                        <span className="text-5xl md:text-7xl xl:text-[6rem] font-bold text-white tracking-tighter uppercase transition-transform duration-500 group-hover:translate-x-8">
+                        <span className="text-4xl sm:text-5xl md:text-7xl xl:text-[6rem] font-bold text-white tracking-tighter uppercase transition-transform duration-500 group-hover:translate-x-8">
                           <SlidingText text={item.name} />
                         </span>
                       </motion.a>

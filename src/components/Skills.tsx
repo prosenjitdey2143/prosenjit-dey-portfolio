@@ -55,7 +55,7 @@ function SkillCard({
 
   return (
     <motion.div 
-      className="absolute top-0 left-0 w-full h-full rounded-[2.5rem] p-8 md:p-12 overflow-hidden border border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)] bg-[#050505]"
+      className="absolute top-0 left-0 w-full h-full rounded-[2.5rem] p-6 md:p-12 overflow-hidden border border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)] bg-[#050505]"
       style={{ 
         y, 
         scale,
@@ -78,7 +78,7 @@ function SkillCard({
       <div className="absolute inset-0 opacity-[0.08] mix-blend-overlay pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
 
       {/* Massive Typographic Watermark */}
-      <div className="absolute -bottom-16 right-4 text-[15rem] md:text-[22rem] font-bold text-white/[0.02] leading-none pointer-events-none select-none tracking-tighter">
+      <div className="absolute -bottom-16 right-4 text-[10rem] sm:text-[15rem] md:text-[22rem] font-bold text-white/[0.02] leading-none pointer-events-none select-none tracking-tighter">
         0{index + 1}
       </div>
 
@@ -101,7 +101,7 @@ function SkillCard({
 
         {/* Bottom Content Row */}
         <div>
-          <h3 className="text-5xl md:text-[6.5rem] font-bold tracking-tighter mb-6 md:mb-8 leading-[0.9] text-white drop-shadow-xl">
+          <h3 className="text-4xl sm:text-5xl md:text-[6.5rem] font-bold tracking-tighter mb-6 md:mb-8 leading-[0.9] text-white drop-shadow-xl">
             {skill.name}
           </h3>
           
@@ -140,7 +140,7 @@ export default function Skills() {
           <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-4 md:px-12 py-24">
              
              {/* Section Header */}
-             <div className="absolute top-12 text-center w-full z-50 pointer-events-none">
+             <div className="absolute top-32 lg:top-24 text-center w-full z-50 pointer-events-none">
                <motion.p 
                  initial={{ opacity: 0 }}
                  whileInView={{ opacity: 1 }}

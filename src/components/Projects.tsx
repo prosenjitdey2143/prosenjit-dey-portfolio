@@ -107,7 +107,7 @@ export default function Projects() {
         DESKTOP LAYOUT: SPLIT SCREEN PARALLAX
         ===========================================
       */}
-      <div className="hidden md:flex relative w-full" style={{ height: `${projects.length * 100}vh` }}>
+      <div className="hidden xl:flex relative w-full" style={{ height: `${projects.length * 100}vh` }}>
         
         {/* LEFT SIDE: Sticky Image Frame with 3D Interaction */}
         <div className="w-[45%] lg:w-1/2 h-screen sticky top-0 p-8 lg:p-16 flex flex-col justify-center z-10" style={{ perspective: "1000px" }}>
@@ -200,7 +200,7 @@ export default function Projects() {
         MOBILE LAYOUT: STACKED STICKY CARDS
         ===========================================
       */}
-      <div className="md:hidden flex flex-col px-4 pt-20 pb-32">
+      <div className="xl:hidden flex flex-col px-4 md:px-12 pt-32 md:pt-40 pb-32">
          <h2 className="text-3xl font-bold text-white tracking-[0.2em] uppercase text-center mb-16">
            My Work
          </h2>
