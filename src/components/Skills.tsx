@@ -131,7 +131,7 @@ export default function Skills() {
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start center", "end bottom"]
+    offset: ["start center", "end end"]
   });
 
   return (
