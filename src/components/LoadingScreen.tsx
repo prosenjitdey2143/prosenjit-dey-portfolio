@@ -19,6 +19,7 @@ export default function LoadingScreen() {
       
       if (loadedCount === FRAME_COUNT) {
         setTimeout(() => {
+          window.scrollTo(0, 0);
           setLoading(false);
           document.body.style.overflow = '';
         }, 1200); // Wait for the window to finish expanding before fading out

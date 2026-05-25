@@ -13,8 +13,9 @@
 }
 
 /* Globally scale down Tailwind's rem units to 80% on desktop to match the zoomed-out cinematic look */
-html {
+html, body {
   font-size: 100%; /* Keep 16px default on mobile for readability */
+  overflow-anchor: none; /* Prevent scroll jumps during hydration */
 }
 
 @media (min-width: 1024px) {
